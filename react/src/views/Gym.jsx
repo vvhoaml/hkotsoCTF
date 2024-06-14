@@ -14,7 +14,7 @@ export default function Gym() {
 
   const getTasks = () => {
     setLoading(true)
-    axiosClient.get('/tasks')
+    axiosClient.get('/gymTasks')
       .then(({ data }) => {
         setLoading(false)
         setTasks(data.data)
@@ -34,7 +34,6 @@ export default function Gym() {
           <thead>
           <tr>
             <th>Тема</th>
-						<th>Задание</th>
 						<th>Сложность</th>
             <th>Дата создания</th>
           </tr>
@@ -52,8 +51,7 @@ export default function Gym() {
             <tbody>
             {tasks.map(t => (
               <tr key={t.id}>
-                <td>{t.theme}</td>
-								<td>{t.task}</td>
+                <td className="task-theme"><Link to={'/gym/tasks/' + t.id}>{t.theme}</Link></td>
                 <td>{t.level}</td>
                 <td>{t.created_at}</td>
               </tr>

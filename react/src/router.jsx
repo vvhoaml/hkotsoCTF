@@ -12,8 +12,9 @@ import Login from "./views/Login";
 import MainPage from "./views/MainPage";
 import NotFound from "./views/NotFound";
 import Signup from "./views/Signup";
-import TaskForm from "./views/TaskFrom";
+import TaskForm from "./views/TaskForm";
 import Tasks from "./views/Tasks";
+import TaskSolution from "./views/TaskSolution";
 import UserForm from "./views/UserForm";
 import UserProfile from "./views/UserProfile";
 import Users from "./views/Users";
@@ -30,9 +31,8 @@ const router = createBrowserRouter([
 			{
 				path: '/dashboard',
 				element: 
-				(
-          <Dashboard>
-            <Navigate to="/dashboard/users" replace />
+					(<Dashboard>
+          <Navigate to="/dashboard/users" replace />
           </Dashboard>),
 				children: [
 					{
@@ -74,15 +74,19 @@ const router = createBrowserRouter([
 				element: <Leaders />
 			},
 			{
-				path: '/Gym',
+				path: '/gym',
 				element: <Gym />
 			},
 			{
-				path: '/Lobbies',
+				path: '/gym/tasks/:id',
+				element: <TaskSolution key="taskSolution"/>
+			},
+			{
+				path: '/lobbies',
 				element: <Lobbies />
 			},
 			{
-				path: '/UserProfile',
+				path: '/userProfile',
 				element: <UserProfile />
 			}
 		]

@@ -7,6 +7,8 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +26,15 @@ class UserController extends Controller
 		public function leaders()
 		{
 				return UserResource::collection(User::query()->orderBy('rating', 'desc')->paginate(100));
+		}
+
+		//
+		public function updateRating(Request $request)
+		{
+				$user = Auth::user();
+				$user->rating += $request->level;
+				$user->save();
+				return response()->json(['success' => true]);
 		}
 
     /**

@@ -26,7 +26,7 @@ class UpdateTaskRequest extends FormRequest
         return [
             'theme' => 'required|string|max:55',
             'task' => 'required|string',
-            'level' => 'required|int|max:1',
+            'level' => 'required|int|min:1|max:9',
             'flag' => 'required|string'
         ];
     }

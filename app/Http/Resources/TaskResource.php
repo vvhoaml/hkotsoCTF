@@ -21,7 +21,7 @@ class TaskResource extends JsonResource
             'theme' => $this->theme,
             'task' => $this->task,
             'level' => $this->level,
-            'flag' => $this->flag,
+            'flag' => $this->when($request->routeIs('tasks.*'), $this->flag),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

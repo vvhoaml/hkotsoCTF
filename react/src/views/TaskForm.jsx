@@ -34,7 +34,7 @@ export default function TaskForm() {
   const onSubmit = ev => {
     ev.preventDefault()
     if (task.id) {
-      axiosClient.put(`/users/${task.id}`, task)
+      axiosClient.put(`/tasks/${task.id}`, task)
         .then(() => {
           setNotification('Задание было успешно изменено')
           navigate('/dashboard/tasks')

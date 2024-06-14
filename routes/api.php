@@ -24,8 +24,13 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
 		Route::get('/leaders',[UserController::class, 'leaders']);
-		Route::get('/gym', [TaskController::class]);
+		Route::get('/gymTasks', [TaskController::class, 'gymTasks']);
 		Route::get('/lobbies', [CompetitionController::class, 'lobbies']);
+
+		Route::get('/gymTasks/{id}', [TaskController::class, 'show']);
+
+		Route::post('/gymTasks/{id}/solution', [TaskController::class, 'solution']);
+		Route::put('/user/updateRating', [UserController::class, 'updateRating']);
 
 		Route::middleware('admin')->group(function () {
 			Route::apiResource('/users', UserController::class);

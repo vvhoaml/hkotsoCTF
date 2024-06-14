@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -21,9 +22,17 @@ class TaskController extends Controller
     }
 
 		// Возвращает список заданий, беря данные из Tasks и сортируя их по id
-		public function GymTasks()
+		public function gymTasks()
 		{
 				return TaskResource::collection(Task::query()->orderBy('id', 'desc')->paginate(100));
+		}
+
+		// 
+		public function solution(Request $request, $id)
+		{
+				$task = Task::find($id);
+				$correct = $request->answer === $task->flag;
+				return response()->json(['correct' => $correct]);
 		}
 
     /**
@@ -47,9 +56,15 @@ class TaskController extends Controller
      * @param \App\Models\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
-        return new TaskResource($task);
+        $task = Task::find($id);
+
+        if (!$task) {
+            return response()->json(['message' => 'Task not found'], 404);
+        }
+
+        return response(new TaskResource($task), 200);
     }
 
     /**

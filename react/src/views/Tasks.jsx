@@ -47,7 +47,6 @@ export default function Tasks() {
           <tr>
             <th>ID</th>
             <th>Тема</th>
-            <th>Задание</th>
 						<th>Сложность</th>
 						<th>Ответ</th>
             <th>Дата создания</th>
@@ -69,7 +68,6 @@ export default function Tasks() {
               <tr key={t.id}>
                 <td>{t.id}</td>
                 <td>{t.theme}</td>
-                <td>{t.task}</td>
                 <td>{t.level}</td>
 								<td>{t.flag}</td>
                 <td>{t.created_at}</td>
