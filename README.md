@@ -1,1 +1,1 @@
-hkotsoctf.ru
+# https://ctfhkotso.ru
